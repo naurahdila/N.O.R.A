@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keranjang Belanja - N.O.R.A</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../keranjang.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="../index.html">
+            <h1>N.O.R.A</h1>
+          </a>
+        </div>
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="../index.html">Beranda</a></li>
+            <li><a href="../produk/produk.html">Koleksi</a></li>
+            <li><a href="../index.html#tentang">Tentang Kami</a></li>
+            <li><a href="../artikel/artikel.html">Artikel</a></li>
+            <li><a href="../index.html#kontak">Kontak</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
+          <a href="keranjang.html" class="icon-link active">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+          <a href="#" class="icon-link"><i class="fas fa-user"></i></a>
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="../index.html">Beranda</a></li>
+      <li><a href="katalog-produk.html">Koleksi</a></li>
+      <li><a href="../index.html#tentang">Tentang Kami</a></li>
+      <li><a href="../artikel/artikel.html">Artikel</a></li>
+      <li><a href="../index.html#kontak">Kontak</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <div class="social-links">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+      <h1>Keranjang Belanja</h1>
+  </div>
+
+  <!-- Cart Section -->
+  <section class="cart-section">
+    <div class="container">
+      <div class="cart-container">
+        <div class="cart-items-container">
+          <div class="cart-header">
+            <div class="cart-header-item product-col">Produk</div>
+            <div class="cart-header-item price-col">Harga</div>
+            <div class="cart-header-item quantity-col">Jumlah</div>
+            <div class="cart-header-item subtotal-col">Subtotal</div>
+            <div class="cart-header-item action-col"></div>
+          </div>
+          
+          <div id="cartItemsList">
+            <!-- Cart items will be loaded here -->
+          </div>
+          
+          <div id="emptyCartMessage" class="empty-cart-message" style="display: none;">
+            <i class="fas fa-shopping-bag"></i>
+            <h3>Keranjang Belanja Anda Kosong</h3>
+            <p>Silakan tambahkan produk ke keranjang terlebih dahulu</p>
+            <a href="../produk/produk.html" class="btn-shop-now">Belanja Sekarang</a>
+          </div>
+        </div>
+        
+        <div class="cart-actions">
+          <div class="coupon-section">
+            <input type="text" placeholder="Kode Kupon" class="coupon-input" />
+            <button class="btn-apply-coupon">Terapkan Kupon</button>
+          </div>
+          <button class="btn-update-cart" id="updateCartBtn">Update Keranjang</button>
+        </div>
+        
+        <div class="cart-summary">
+          <h2>Ringkasan Belanja</h2>
+          <div class="summary-row">
+            <span class="summary-label">Subtotal</span>
+            <span class="summary-value" id="cartSubtotal">Rp 0</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Pengiriman</span>
+            <div class="shipping-options">
+              <div class="shipping-option">
+                <input type="radio" id="shipping1" name="shipping" value="15000" checked />
+                <label for="shipping1">Reguler (Rp 15.000)</label>
+              </div>
+              <div class="shipping-option">
+                <input type="radio" id="shipping2" name="shipping" value="25000" />
+                <label for="shipping2">Express (Rp 25.000)</label>
+              </div>
+            </div>
+          </div>
+          <div class="summary-row total-row">
+            <span class="summary-label">Total</span>
+            <span class="summary-value" id="cartTotal">Rp 0</span>
+          </div>
+          <button class="btn-checkout" id="checkoutBtn">Lanjutkan ke Pembayaran</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <h2>N.O.R.A</h2>
+          </div>
+          <p class="footer-description">
+            N.O.R.A adalah brand gamis dan hijab homemade yang menyediakan
+            busana muslim berkualitas tinggi dengan harga terjangkau.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Kategori</h3>
+          <ul class="footer-links">
+            <li><a href="#">Gamis</a></li>
+            <li><a href="#">Hijab</a></li>
+            <li><a href="#">Set Gamis & Hijab</a></li>
+            <li><a href="#">Produk Terbaru</a></li>
+            <li><a href="#">Produk Terlaris</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Informasi</h3>
+          <ul class="footer-links">
+            <li><a href="#">Tentang Kami</a></li>
+            <li><a href="#">Cara Pemesanan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Kontak Kami</h3>
+          <ul class="contact-info">
+            <li>
+              <i class="fas fa-map-marker-alt"></i> Jl. Sememi Jaya, Surabaya
+              Barat
+            </li>
+            <li><i class="fas fa-phone"></i> +62 821 3952 1237</li>
+            <li><i class="fas fa-envelope"></i> noracolections.com</li>
+            <li><i class="fas fa-clock"></i> Senin - Sabtu: 08.00 - 17.00</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">
+          <p>&copy; 2023 N.O.R.A. All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-chevron-up"></i>
+  </a>
+
+  <!-- Notification -->
+  <div class="notification" id="notification">
+    <div class="notification-content">
+      <i class="fas fa-check-circle"></i>
+      <span id="notificationMessage">Keranjang berhasil diperbarui</span>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+  <script src="../keranjang.js"></script>
+</body>
+</html>

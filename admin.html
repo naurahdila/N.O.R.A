@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="id" class="light-mode">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - N.O.R.A</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css">
+
+    <!-- jQuery and DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+</head>
+<body>
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-gem"></i>
+                    <span class="logo-text">N.O.R.A</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-content">
+                <nav class="sidebar-nav">
+                    <div class="nav-section">
+                        <div class="nav-item active" data-page="dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </div>
+                        <div class="nav-item" data-page="transactions">
+                            <i class="fas fa-receipt"></i>
+                            <span>Riwayat Transaksi</span>
+                        </div>
+                        <div class="nav-item" data-page="products">
+                            <i class="fas fa-box"></i>
+                            <span>Kelola Produk</span>
+                        </div>
+                        <div class="nav-item" data-page="articles">
+                            <i class="fas fa-newspaper"></i>
+                            <span>Kelola Artikel</span>
+                        </div>
+                        <div class="nav-item" data-page="users">
+                            <i class="fas fa-users"></i>
+                            <span>Kelola Pengguna</span>
+                        </div>
+                        <a href="../account_selection.html" class="nav-item">
+                            <i class="fas fa-globe"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name">Naurahdf</div>
+                            <div class="user-role">Administrator</div>
+                        </div>
+                        <button class="logout-btn" onclick="goToMainSite()">
+                            <i class="fas fa-home"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="header-title-section">
+                        <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                        <div class="breadcrumb">
+                            <span class="breadcrumb-item active" id="breadcrumbText">Overview</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <!-- Theme Toggle Button -->
+                    <button class="header-btn theme-toggle-btn" id="themeToggleBtn" title="Toggle Theme">
+                        <i class="fas fa-sun light-icon"></i>
+                        <i class="fas fa-moon dark-icon"></i>
+                    </button>
+                    <button class="header-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <button class="header-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Dashboard Page -->
+                <div class="page active" id="dashboard">
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card gradient-orange">
+                            <div class="stat-content">
+                                <div class="stat-info">
+                                    <h3>Penjualan Mingguan</h3>
+                                    <div class="stat-value" id="weeklySales">Rp 15,000,000</div>
+                                    <div class="stat-change positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        Naik 60%
+                                    </div>
+                                </div>
+                                <div class="stat-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card gradient-blue">
+                            <div class="stat-content">
+                                <div class="stat-info">
+                                    <h3>Pesanan Mingguan</h3>
+                                    <div class="stat-value" id="weeklyOrders">45</div>
+                                    <div class="stat-change negative">
+                                        <i class="fas fa-arrow-down"></i>
+                                        Turun 10%
+                                    </div>
+                                </div>
+                                <div class="stat-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card gradient-green">
+                            <div class="stat-content">
+                                <div class="stat-info">
+                                    <h3>Pengunjung Online</h3>
+                                    <div class="stat-value" id="visitorsOnline">95</div>
+                                    <div class="stat-change positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        Naik 5%
+                                    </div>
+                                </div>
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Transactions -->
+                    <div class="table-card">
+                        <div class="table-header">
+                            <h3>Transaksi Terbaru</h3>
+                            <button class="btn-primary" onclick="switchPage('transactions')">
+                                <i class="fas fa-eye"></i>
+                                <span class="btn-text">Lihat Semua</span>
+                            </button>
+                        </div>
+                        <div class="table-container">
+                            <div class="table-responsive">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Tanggal</th>
+                                            <th>Pelanggan</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recentTransactionsTable">
+                                        <!-- Recent transactions will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transactions Page -->
+                <div class="page" id="transactions">
+                    <div class="page-header">
+                        <div class="page-header-content">
+                            <h2>Riwayat Transaksi</h2>
+                            <p>Kelola semua transaksi pelanggan</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="btn-secondary" onclick="refreshTransactions()">
+                                <i class="fas fa-sync-alt"></i>
+                                <span class="btn-text">Refresh</span>
+                            </button>
+                            <button class="btn-success" onclick="exportTransactions()">
+                                <i class="fas fa-download"></i>
+                                <span class="btn-text">Export</span>
+                            </button>
+                            <button class="btn-primary" onclick="showAddTransactionModal()">
+                                <i class="fas fa-plus"></i>
+                                <span class="btn-text">Tambah Transaksi</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-card">
+                        <div class="table-container">
+                            <div class="table-responsive">
+                                <table class="data-table" id="transactionsDataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Tanggal</th>
+                                            <th>Pelanggan</th>
+                                            <th>Email</th>
+                                            <th>Total</th>
+                                            <th>Pembayaran</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Mobile responsive container -->
+                            <div class="table-responsive-mobile">
+                                <!-- Mobile cards will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Page -->
+                <div class="page" id="products">
+                    <div class="page-header">
+                        <div class="page-header-content">
+                            <h2>Kelola Produk</h2>
+                            <p>Tambah, edit, dan kelola produk</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="btn-secondary" onclick="refreshProducts()">
+                                <i class="fas fa-sync-alt"></i>
+                                <span class="btn-text">Refresh</span>
+                            </button>
+                            <button class="btn-primary" onclick="showAddProductModal()">
+                                <i class="fas fa-plus"></i>
+                                <span class="btn-text">Tambah Produk</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-card">
+                        <div class="table-container">
+                            <div class="table-responsive">
+                                <table class="data-table" id="productsDataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Gambar</th>
+                                            <th>Nama Produk</th>
+                                            <th>Kategori</th>
+                                            <th>Harga</th>
+                                            <th>Stok</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Mobile responsive container -->
+                            <div class="table-responsive-mobile">
+                                <!-- Mobile cards will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Articles Page -->
+                <div class="page" id="articles">
+                    <div class="page-header">
+                        <div class="page-header-content">
+                            <h2>Kelola Artikel</h2>
+                            <p>Buat dan kelola artikel blog</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="btn-secondary" onclick="refreshArticles()">
+                                <i class="fas fa-sync-alt"></i>
+                                <span class="btn-text">Refresh</span>
+                            </button>
+                            <button class="btn-primary" onclick="showAddArticleModal()">
+                                <i class="fas fa-plus"></i>
+                                <span class="btn-text">Tambah Artikel</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-card">
+                        <div class="table-container">
+                            <div class="table-responsive">
+                                <table class="data-table" id="articlesDataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Judul</th>
+                                            <th>Kategori</th>
+                                            <th>Penulis</th>
+                                            <th>Tanggal</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Mobile responsive container -->
+                            <div class="table-responsive-mobile">
+                                <!-- Mobile cards will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Users Page -->
+                <div class="page" id="users">
+                    <div class="page-header">
+                        <div class="page-header-content">
+                            <h2>Kelola Pengguna</h2>
+                            <p>Kelola akun pengguna dan admin</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="btn-secondary" onclick="refreshUsers()">
+                                <i class="fas fa-sync-alt"></i>
+                                <span class="btn-text">Refresh</span>
+                            </button>
+                            <button class="btn-primary" onclick="showAddUserModal()">
+                                <i class="fas fa-user-plus"></i>
+                                <span class="btn-text">Tambah User</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-card">
+                        <div class="table-container">
+                            <div class="table-responsive">
+                                <table class="data-table" id="usersDataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Avatar</th>
+                                            <th>Nama</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Status</th>
+                                            <th>Bergabung</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Mobile responsive container -->
+                            <div class="table-responsive-mobile">
+                                <!-- Mobile cards will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Order Detail Modal -->
+    <div class="modal" id="orderDetailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Detail Pesanan</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="orderDetailContent">
+                <!-- Order details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary btn-close-modal">Tutup</button>
+                <button class="btn-primary" id="updateStatusBtn">Update Status</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Tambah Produk</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="productForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nama Produk *</label>
+                            <input type="text" name="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kategori *</label>
+                            <select name="category" class="form-input" required>
+                                <option value="">Pilih Kategori</option>
+                                <option value="gamis">Gamis</option>
+                                <option value="hijab">Hijab</option>
+                                <option value="set">Set Gamis & Hijab</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Harga *</label>
+                            <input type="number" name="price" class="form-input" required min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Stok *</label>
+                            <input type="number" name="stock" class="form-input" required min="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select name="status" class="form-input">
+                            <option value="active">Aktif</option>
+                            <option value="inactive">Tidak Aktif</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <textarea name="description" class="form-input" rows="3" placeholder="Deskripsi produk..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('productModal')">Batal</button>
+                <button class="btn-primary" onclick="saveProduct()">Simpan Produk</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Modal -->
+    <div class="modal" id="articleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Tambah Artikel</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="articleForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Judul Artikel *</label>
+                            <input type="text" name="title" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kategori *</label>
+                            <select name="category" class="form-input" required>
+                                <option value="">Pilih Kategori</option>
+                                <option value="Tips & Trik">Tips & Trik</option>
+                                <option value="Fashion">Fashion</option>
+                                <option value="Tutorial">Tutorial</option>
+                                <option value="News">News</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Penulis *</label>
+                            <input type="text" name="author" class="form-input" value="Admin" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Status *</label>
+                            <select name="status" class="form-input" required>
+                                <option value="draft">Draft</option>
+                                <option value="published">Published</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Excerpt</label>
+                        <textarea name="excerpt" class="form-input" rows="2" placeholder="Ringkasan singkat artikel..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Konten *</label>
+                        <textarea name="content" class="form-input" rows="5" placeholder="Isi artikel..." required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('articleModal')">Batal</button>
+                <button class="btn-primary" onclick="saveArticle()">Simpan Artikel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Modal -->
+    <div class="modal" id="userModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Tambah User</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="userForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nama Lengkap *</label>
+                            <input type="text" name="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" name="email" class="form-input" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Role *</label>
+                            <select name="role" class="form-input" required>
+                                <option value="">Pilih Role</option>
+                                <option value="Administrator">Administrator</option>
+                                <option value="Editor">Editor</option>
+                                <option value="Customer">Customer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Status *</label>
+                            <select name="status" class="form-input" required>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password *</label>
+                        <input type="password" name="password" class="form-input" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('userModal')">Batal</button>
+                <button class="btn-primary" onclick="saveUser()">Simpan User</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Modal -->
+    <div class="modal" id="transactionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Tambah Transaksi</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="transactionForm">
+                    <div class="form-section">
+                        <h4>Informasi Pelanggan</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nama Depan *</label>
+                                <input type="text" name="firstName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nama Belakang *</label>
+                                <input type="text" name="lastName" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" name="email" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Telepon *</label>
+                                <input type="tel" name="phone" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Alamat *</label>
+                            <textarea name="address" class="form-input" rows="2" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h4>Detail Pesanan</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Metode Pembayaran *</label>
+                                <select name="paymentMethod" class="form-input" required>
+                                    <option value="">Pilih Metode</option>
+                                    <option value="bank-transfer">Transfer Bank</option>
+                                    <option value="e-wallet">E-Wallet</option>
+                                    <option value="cod">Bayar di Tempat (COD)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Status *</label>
+                                <select name="status" class="form-input" required>
+                                    <option value="pending">Menunggu Pembayaran</option>
+                                    <option value="processing">Diproses</option>
+                                    <option value="completed">Selesai</option>
+                                    <option value="cancelled">Dibatalkan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Subtotal *</label>
+                                <input type="number" name="subtotal" class="form-input" required min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Ongkos Kirim</label>
+                                <input type="number" name="shipping" class="form-input" value="20000" min="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Pajak</label>
+                                <input type="number" name="tax" class="form-input" value="0" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Diskon</label>
+                                <input type="number" name="discount" class="form-input" value="0" min="0">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('transactionModal')">Batal</button>
+                <button class="btn-primary" onclick="saveTransaction()">Simpan Transaksi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Update Modal -->
+    <div class="modal" id="statusUpdateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Update Status Pesanan</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Status Baru</label>
+                    <select id="newOrderStatus" class="form-input">
+                        <option value="pending">Menunggu Pembayaran</option>
+                        <option value="processing">Diproses</option>
+                        <option value="completed">Selesai</option>
+                        <option value="cancelled">Dibatalkan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Catatan (Opsional)</label>
+                    <textarea id="statusNote" class="form-input" rows="3" placeholder="Tambahkan catatan untuk perubahan status..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('statusUpdateModal')">Batal</button>
+                <button class="btn-primary" onclick="updateOrderStatus()">Update Status</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="notificationMessage"></span>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

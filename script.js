@@ -1,371 +1,463 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn")
-    const navLinks = document.getElementById("navLinks")
-  
-    // Toggle mobile menu
-    if (mobileMenuBtn) {
-      mobileMenuBtn.addEventListener("click", () => {
-        mobileMenuBtn.classList.toggle("active")
-        navLinks.classList.toggle("active")
-      })
+let products = [
+  {
+    id: 1,
+    name: "Gamis Zahra",
+    price: 213000,
+    category: "Gamis",
+    image: "https://i.pinimg.com/736x/48/04/1c/48041cd200381b20a4cddf3be784d837.jpg",
+    description: "Gamis elegan dengan bahan katun premium yang nyaman digunakan sehari-hari. Desain modern dengan potongan yang syar'i.",
+    material: "Katun",
+    colors: ["Pink", "Putih", "Hitam", "Navy"],
+    sizes: ["S", "M", "L", "XL"],
+  },
+  {
+    id: 2,
+    name: "Hijab Pashmina",
+    price: 50000,
+    category: "Hijab",
+    image: "https://i.pinimg.com/736x/aa/58/5a/aa585a7f2e26b4b0ed97cb2894d187fd.jpg",
+    description: "Hijab pashmina dengan bahan yang lembut dan mudah diatur. Cocok untuk berbagai acara.",
+    material: "Voal Premium",
+    colors: ["Putih", "Hitam", "Pink", "Navy"],
+    sizes: ["One Size"],
+  },
+  {
+    id: 3,
+    name: "Set Gamis & Hijab Aisha",
+    price: 320000,
+    category: "Set",
+    image: "https://i.pinimg.com/736x/2f/e2/1e/2fe21e2ac4cc68a970358d57d7a7b60f.jpg",
+    description: "Set lengkap gamis dan hijab dengan motif yang serasi. Pilihan tepat untuk tampilan yang koordinatif.",
+    material: "Katun Silk",
+    colors: ["Pink", "Navy", "Maroon"],
+    sizes: ["S", "M", "L", "XL"],
+  },
+  {
+    id: 4,
+    name: "Gamis Syari Fatimah",
+    price: 275000,
+    category: "Gamis",
+    image: "https://i.pinimg.com/736x/c3/78/be/c378be2b22b36e94a8b484d924d5a769.jpg",
+    description: "Gamis syari dengan model longgar dan nyaman. Dilengkapi dengan tali pinggang untuk siluet yang indah.",
+    material: "Wolfis Premium",
+    colors: ["Hitam", "Navy", "Brown"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+  },
+  {
+    id: 5,
+    name: "Hijab Segi Empat Silk",
+    price: 75000,
+    category: "Hijab",
+    image: "https://i.pinimg.com/736x/59/f1/40/59f140fb34f3856b61fefa2a4fd2e3f4.jpg",
+    description: "Hijab segi empat dengan bahan silk yang mewah dan mudah dibentuk. Memberikan kesan elegan.",
+    material: "Silk Premium",
+    colors: ["Silver", "Cream", "Pink", "Navy", "Hitam"],
+    sizes: ["110x110cm"],
+  },
+  {
+    id: 6,
+    name: "Gamis Casual Mariam",
+    price: 185000,
+    category: "Gamis",
+    image: "https://i.pinimg.com/736x/cc/77/8a/cc778ae30ab31e24fe2a8602423bb542.jpg",
+    description: "Gamis casual untuk aktivitas sehari-hari. Bahan yang ringan dan tidak mudah kusut.",
+    material: "Cotton Combed",
+    colors: ["Pink", "Mint", "Lavender"],
+    sizes: ["S", "M", "L", "XL"],
+  },
+];
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function saveToLocalStorage() {
+  try {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("products", JSON.stringify(products));
+  } catch (error) {
+    console.error("Error saving to localStorage:", error);
+    showNotification("Gagal menyimpan data", "error");
+  }
+}
+
+function loadFromLocalStorage() {
+  try {
+    const savedProducts = localStorage.getItem("products");
+    if (savedProducts) {
+      products = JSON.parse(savedProducts);
     }
-  
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", (event) => {
-      if (navLinks && mobileMenuBtn && !navLinks.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
-        mobileMenuBtn.classList.remove("active")
-        navLinks.classList.remove("active")
-      }
-    })
-  
-    // Close mobile menu when window is resized
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 768 && navLinks && mobileMenuBtn) {
-        mobileMenuBtn.classList.remove("active")
-        navLinks.classList.remove("active")
-      }
-    })
-  
-    // Auto-scroll for promo slider
-    const promoSlider = document.querySelector(".promo-slider")
-    if (promoSlider) {
-      let isDown = false
-      let startX
-      let scrollLeft
-  
-      promoSlider.addEventListener("mousedown", (e) => {
-        isDown = true
-        startX = e.pageX - promoSlider.offsetLeft
-        scrollLeft = promoSlider.scrollLeft
-      })
-  
-      promoSlider.addEventListener("mouseleave", () => {
-        isDown = false
-      })
-  
-      promoSlider.addEventListener("mouseup", () => {
-        isDown = false
-      })
-  
-      promoSlider.addEventListener("mousemove", (e) => {
-        if (!isDown) return
-        e.preventDefault()
-        const x = e.pageX - promoSlider.offsetLeft
-        const walk = (x - startX) * 2
-        promoSlider.scrollLeft = scrollLeft - walk
-      })
+
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      cart = JSON.parse(savedCart);
     }
-  
-    // Add button click handlers
-    const buttons = document.querySelectorAll("button")
-    buttons.forEach((button) => {
-      button.addEventListener("click", function (e) {
-        // Create ripple effect
-        const ripple = document.createElement("span")
-        ripple.classList.add("ripple")
-        this.appendChild(ripple)
-  
-        // Get position
-        const x = e.clientX - e.target.getBoundingClientRect().left
-        const y = e.clientY - e.target.getBoundingClientRect().top
-  
-        ripple.style.left = `${x}px`
-        ripple.style.top = `${y}px`
-  
-        // Remove ripple
+  } catch (error) {
+    console.error("Error loading from localStorage:", error);
+    showNotification("Gagal memuat data", "error");
+  }
+}
+
+function formatPrice(price) {
+  try {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(price);
+  } catch (error) {
+    console.error("Error formatting price:", error);
+    return `Rp ${price}`;
+  }
+}
+
+function parsePrice(priceString) {
+  if (typeof priceString === "number") return priceString;
+
+  if (typeof priceString === "string") {
+    try {
+      const numericString = priceString.replace(/[^0-9.]/g, "");
+      const normalizedString = numericString.replace(/\./g, '');
+      return Number.parseInt(normalizedString) || 0;
+    } catch (error) {
+      console.error("Error parsing price:", error);
+      return 0;
+    }
+  }
+
+  return 0;
+}
+
+function addToCart(productId, name, price, image, color = "default", size = "default", quantity = 1) {
+  try {
+    const numericPrice = typeof price === "number" ? price : parsePrice(price);
+    const existingItemIndex = cart.findIndex(
+      (item) => item.id === productId && item.color === color && item.size === size
+    );
+
+    if (existingItemIndex !== -1) {
+      cart[existingItemIndex].quantity += quantity;
+    } else {
+      const newItem = {
+        id: productId || Date.now().toString(),
+        name: name,
+        price: numericPrice,
+        image: image,
+        color: color,
+        size: size,
+        quantity: quantity,
+      };
+      cart.push(newItem);
+    }
+
+    saveToLocalStorage();
+    updateCartCount();
+    showNotification(`${name} berhasil ditambahkan ke keranjang`);
+    setTimeout(() => {
+      window.location.href = "keranjang.html";
+    }, 1000);
+  } catch (error) {
+    console.error("Error adding to cart:", error);
+    showNotification("Gagal menambahkan ke keranjang", "error");
+  }
+}
+
+function showNotification(message, type = "success") {
+  const notification = document.getElementById("notification");
+  const notificationMessage = document.getElementById("notificationMessage");
+
+  if (notification && notificationMessage) {
+    try {
+      notificationMessage.textContent = message;
+      notification.style.display = "block";
+      notification.style.backgroundColor = type === "error" ? "#f44336" : "#ffb6c1";
+      notification.style.transform = "translateY(0)";
+      notification.style.opacity = "1";
+
+      setTimeout(() => {
+        notification.style.transform = "translateY(100px)";
+        notification.style.opacity = "0";
         setTimeout(() => {
-          ripple.remove()
-        }, 600)
-  
-        // Handle specific button actions
-        if (this.classList.contains("detail-btn")) {
-          e.stopPropagation()
-          const bimbelName = this.closest(".bimbel-card").querySelector("h3").textContent
-          alert(`Menampilkan detail untuk: ${bimbelName}`)
-        }
-      })
-    })
-  
-    // Add click handlers for service cards
-    const serviceCards = document.querySelectorAll(".service-card")
-    serviceCards.forEach((card) => {
-      card.addEventListener("click", function () {
-        const serviceName = this.querySelector("h3").textContent
-        let category = ""
-  
-        // Determine which category was clicked
-        switch (serviceName) {
-          case "Bimbel Pas":
-            category = "bimbel-pas"
-            break
-          case "Terdekat":
-            category = "terdekat"
-            break
-          case "Andalan":
-            category = "andalan"
-            break
-          case "Terjangkau":
-            category = "terjangkau"
-            break
-          default:
-            category = "semua"
-        }
-  
-        // Redirect to category page with the selected category
-        window.location.href = `category.html?category=${category}`
-      })
-    })
-  
-    // Add click handlers for top rated bimbel cards
-    const topRatedCards = document.querySelectorAll(".top-rated .bimbel-card")
-    topRatedCards.forEach((card) => {
-      card.addEventListener("click", function (e) {
-        // Don't trigger if clicking the detail button
-        if (!e.target.classList.contains("detail-btn") && !e.target.closest(".detail-btn")) {
-          const bimbelName = this.querySelector("h3").textContent
-          window.location.href = `detail.html?bimbel=${encodeURIComponent(bimbelName)}`
-        }
-      })
-    })
-  
-    // Add click handlers for bimbel cards
-    const bimbelCards = document.querySelectorAll(".bimbel-card")
-    bimbelCards.forEach((card) => {
-      card.addEventListener("click", function (e) {
-        // Don't trigger if clicking the detail button
-        if (!e.target.classList.contains("detail-btn") && !e.target.closest(".detail-btn")) {
-          const bimbelName = this.querySelector("h3").textContent
-          window.location.href = `detail.html?bimbel=${encodeURIComponent(bimbelName)}`
-        }
-      })
-    })
-  
-    // Add click handlers for mobile nav items
-    const navItems = document.querySelectorAll(".mobile-nav .nav-item")
-    navItems.forEach((item) => {
-      item.addEventListener("click", function (e) {
-        e.preventDefault()
-  
-        // Remove active class from all items
-        navItems.forEach((navItem) => navItem.classList.remove("active"))
-  
-        // Add active class to clicked item
-        this.classList.add("active")
-  
-        const navName = this.querySelector("span").textContent
-  
-        // Navigate based on menu item
-        switch (navName) {
-          case "Beranda":
-            window.location.href = "index.html"
-            break
-          case "Bimbel":
-            window.location.href = "category.html?category=semua"
-            break
-          case "Tentor":
-            window.location.href = "tentor.html"
-            break
-          case "Promo":
-            window.location.href = "promo.html"
-            break
-          case "Akun":
-            window.location.href = "profile.html"
-            break
-          default:
-            window.location.href = "index.html"
-        }
-      })
-    })
-  })
-  
-  document.addEventListener("DOMContentLoaded", () => {
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn")
-    const mobileNav = document.getElementById("mobileNav")
-  
-    mobileMenuBtn.addEventListener("click", function () {
-      mobileNav.classList.toggle("active")
-      document.body.classList.toggle("no-scroll")
-  
-      // Toggle menu button animation
-      this.classList.toggle("active")
-      if (this.classList.contains("active")) {
-        this.children[0].style.transform = "rotate(45deg) translate(5px, 5px)"
-        this.children[1].style.opacity = "0"
-        this.children[2].style.transform = "rotate(-45deg) translate(5px, -5px)"
-      } else {
-        this.children[0].style.transform = "none"
-        this.children[1].style.opacity = "1"
-        this.children[2].style.transform = "none"
+          notification.style.display = "none";
+        }, 300);
+      }, 3000);
+    } catch (error) {
+      console.error("Error showing notification:", error);
+    }
+  }
+}
+
+function updateCartCount() {
+  const cartCount = document.getElementById("cartCount");
+  if (cartCount) {
+    try {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCount.textContent = totalItems;
+    } catch (error) {
+      console.error("Error updating cart count:", error);
+    }
+  }
+}
+
+function getProductById(id) {
+  try {
+    return products.find((product) => product.id === Number.parseInt(id));
+  } catch (error) {
+    console.error("Error getting product by ID:", error);
+    return null;
+  }
+}
+
+function logout() {
+  try {
+    localStorage.removeItem("adminLoggedIn");
+    localStorage.removeItem("customerLoggedIn");
+    localStorage.removeItem("userType");
+    showNotification("Berhasil keluar!", "success");
+    setTimeout(() => {
+      window.location.href = "account_selection.html";
+    }, 1000);
+  } catch (error) {
+    console.error("Error during logout:", error);
+    showNotification("Gagal keluar", "error");
+  }
+}
+
+function updateUserUI() {
+  try {
+    const userType = localStorage.getItem("userType");
+    const isAdminLoggedIn = localStorage.getItem("adminLoggedIn");
+    const isCustomerLoggedIn = localStorage.getItem("customerLoggedIn");
+    const elements = {
+      userInfo: document.getElementById("userInfo"),
+      userDivider: document.getElementById("userDivider"),
+      adminAccess: document.getElementById("adminAccess"),
+      riwayatAccess: document.getElementById("riwayatAccess"),
+      loginLink: document.getElementById("loginLink"),
+      logoutLink: document.getElementById("logoutLink"),
+      userName: document.getElementById("userName"),
+      userTypeDisplay: document.getElementById("userTypeDisplay"),
+    };
+
+    if (isAdminLoggedIn || isCustomerLoggedIn) {
+      if (elements.userInfo) elements.userInfo.style.display = "flex";
+      if (elements.userDivider) elements.userDivider.style.display = "block";
+      if (elements.loginLink) elements.loginLink.style.display = "none";
+      if (elements.logoutLink) elements.logoutLink.style.display = "flex";
+
+      if (elements.userName) elements.userName.textContent = userType === "admin" ? "Admin" : "Customer";
+      if (elements.userTypeDisplay) elements.userTypeDisplay.textContent = userType === "admin" ? "Administrator" : "Pelanggan";
+
+      if (userType === "admin" && elements.adminAccess) {
+        elements.adminAccess.style.display = "flex";
+        if (elements.riwayatAccess) elements.riwayatAccess.style.display = "none";
+      } else if (userType === "customer" && elements.riwayatAccess) {
+        elements.riwayatAccess.style.display = "flex";
+        if (elements.adminAccess) elements.adminAccess.style.display = "none";
       }
-    })
-  
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target) && mobileNav.classList.contains("active")) {
-        mobileNav.classList.remove("active")
-        document.body.classList.remove("no-scroll")
-        mobileMenuBtn.classList.remove("active")
-        mobileMenuBtn.children[0].style.transform = "none"
-        mobileMenuBtn.children[1].style.opacity = "1"
-        mobileMenuBtn.children[2].style.transform = "none"
-      }
-    })
-  
-    // Product Filter
-    const filterBtns = document.querySelectorAll(".filter-btn")
-    const productCards = document.querySelectorAll(".product-card")
-  
-    filterBtns.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        // Remove active class from all buttons
-        filterBtns.forEach((btn) => btn.classList.remove("active"))
-  
-        // Add active class to clicked button
-        this.classList.add("active")
-  
-        // Get filter value
-        const filterValue = this.getAttribute("data-filter")
-  
-        // Filter products
-        productCards.forEach((card) => {
-          if (filterValue === "all" || card.getAttribute("data-category") === filterValue) {
-            card.style.display = "block"
+    } else {
+      if (elements.userInfo) elements.userInfo.style.display = "none";
+      if (elements.userDivider) elements.userDivider.style.display = "none";
+      if (elements.adminAccess) elements.adminAccess.style.display = "none";
+      if (elements.riwayatAccess) elements.riwayatAccess.style.display = "none";
+      if (elements.loginLink) elements.loginLink.style.display = "flex";
+      if (elements.logoutLink) elements.logoutLink.style.display = "none";
+    }
+  } catch (error) {
+    console.error("Error updating user UI:", error);
+  }
+}
+
+function setupUserDropdown() {
+  const userToggle = document.getElementById("userToggle");
+  const userDropdown = document.getElementById("userDropdown");
+
+  if (userToggle && userDropdown) {
+    try {
+      userToggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        userDropdown.classList.toggle("show");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!userToggle.contains(e.target) && !userDropdown.contains(e.target)) {
+          userDropdown.classList.remove("show");
+        }
+      });
+    } catch (error) {
+      console.error("Error setting up user dropdown:", error);
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    // Preloader Logic: Show preloader for 3 seconds (2s logo animation + 1s delay), or skip on click
+    const preloader = document.getElementById("preloader");
+    const mainContent = document.getElementById("mainContent");
+
+    if (preloader && mainContent) {
+      // Function to handle preloader completion
+      const handlePreloaderComplete = () => {
+        preloader.classList.add("hidden"); // Trigger fade-out transition
+        setTimeout(() => {
+          preloader.style.display = "none"; // Remove preloader after transition
+          // Check if user has selected an account
+          const userType = localStorage.getItem("userType");
+          if (!userType) {
+            // Redirect to account-selection.html if no userType
+            window.location.href = "account_selection.html";
           } else {
-            card.style.display = "none"
+            // Show main content if userType exists
+            mainContent.classList.add("visible"); // Trigger fade-in for content
+            // Update UI based on user type
+            updateUserUI();
           }
-        })
-      })
-    })
-  
-    // Testimonial Slider
-    const testimonialDots = document.querySelectorAll(".testimonial-dots .dot")
-    const testimonialSlider = document.querySelector(".testimonial-slider")
-  
-    testimonialDots.forEach((dot, index) => {
-      dot.addEventListener("click", function () {
-        // Remove active class from all dots
-        testimonialDots.forEach((dot) => dot.classList.remove("active"))
-  
-        // Add active class to clicked dot
-        this.classList.add("active")
-  
-        // Calculate scroll position
-        const cardWidth = document.querySelector(".testimonial-card").offsetWidth
-        const gap = 30 // Gap between cards
-        const scrollPosition = index * (cardWidth + gap)
-  
-        // Scroll to position
-        testimonialSlider.scrollTo({
-          left: scrollPosition,
-          behavior: "smooth",
-        })
-      })
-    })
-  
-    // Back to Top Button
-    const backToTopBtn = document.getElementById("backToTop")
-  
-    window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 300) {
-        backToTopBtn.classList.add("active")
-      } else {
-        backToTopBtn.classList.remove("active")
-      }
-    })
-  
-    backToTopBtn.addEventListener("click", (e) => {
-      e.preventDefault()
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      })
-    })
-  
-    // Product Actions
-    const actionBtns = document.querySelectorAll(".action-btn")
-  
-    actionBtns.forEach((btn) => {
-      btn.addEventListener("click", function (e) {
-        e.preventDefault()
-  
-        const icon = this.querySelector("i")
-  
-        if (icon.classList.contains("fa-heart") || icon.classList.contains("fa-heart-o")) {
-          // Toggle wishlist
+        }, 500); // Match CSS transition duration (0.5s)
+      };
+
+      // Set timeout for automatic hide after 3 seconds
+      const preloaderTimeout = setTimeout(handlePreloaderComplete, 3000); // Total: 2s animation + 1s delay
+
+      // Add click event to skip preloader
+      preloader.addEventListener("click", () => {
+        clearTimeout(preloaderTimeout); // Cancel the timeout
+        handlePreloaderComplete(); // Immediately handle completion
+      });
+    }
+
+    loadFromLocalStorage();
+    updateCartCount();
+    setupUserDropdown();
+
+    const actionButtons = document.querySelectorAll(".action-btn");
+    actionButtons.forEach((button) => {
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const icon = this.querySelector("i");
+        const productCard = this.closest(".product-card");
+        const productId = productCard.getAttribute("data-id");
+        const productName = productCard.querySelector("h3").textContent;
+        const productPriceElement = productCard.querySelector(".current-price");
+        const productPrice = productPriceElement ? productPriceElement.textContent : "Rp 0";
+        const productImage = productCard.querySelector("img").src;
+
+        if (icon.classList.contains("fa-heart")) {
           if (icon.classList.contains("far")) {
-            icon.classList.remove("far")
-            icon.classList.add("fas")
-            showNotification("Produk ditambahkan ke wishlist")
+            icon.classList.remove("far");
+            icon.classList.add("fas");
+            showNotification(`${productName} ditambahkan ke wishlist`);
           } else {
-            icon.classList.remove("fas")
-            icon.classList.add("far")
-            showNotification("Produk dihapus dari wishlist")
+            icon.classList.remove("fas");
+            icon.classList.add("far");
+            showNotification(`${productName} dihapus dari wishlist`);
           }
         } else if (icon.classList.contains("fa-shopping-bag")) {
-          // Add to cart
-          const cartCount = document.querySelector(".cart-count")
-          cartCount.textContent = Number.parseInt(cartCount.textContent) + 1
-          showNotification("Produk ditambahkan ke keranjang")
+          const numericPrice = parsePrice(productPrice);
+          addToCart(productId, productName, numericPrice, productImage);
         } else if (icon.classList.contains("fa-eye")) {
-          // Quick view
-          showNotification("Quick view akan segera hadir")
+          window.location.href = `detail_produk/detail_produk.html?id=${productId}`;
         }
-      })
-    })
-  
-    // Show notification
-    function showNotification(message) {
-      // Create notification element
-      const notification = document.createElement("div")
-      notification.className = "notification"
-      notification.textContent = message
-  
-      // Add notification to body
-      document.body.appendChild(notification)
-  
-      // Show notification
-      setTimeout(() => {
-        notification.classList.add("show")
-      }, 10)
-  
-      // Hide notification after 3 seconds
-      setTimeout(() => {
-        notification.classList.remove("show")
-        setTimeout(() => {
-          document.body.removeChild(notification)
-        }, 300)
-      }, 3000)
+      });
+    });
+
+    const productCards = document.querySelectorAll(".product-card");
+    productCards.forEach((card) => {
+      card.addEventListener("click", function (e) {
+        if (!e.target.classList.contains("action-btn") && !e.target.closest(".action-btn")) {
+          const productId = this.getAttribute("data-id");
+          window.location.href = `detail_produk/detail_produk.html?id=${productId}`;
+        }
+      });
+    });
+
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const productCardsAll = document.querySelectorAll(".product-card");
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        filterButtons.forEach((btn) => btn.classList.remove("active"));
+        this.classList.add("active");
+        const filterValue = this.getAttribute("data-filter");
+
+        productCardsAll.forEach((card) => {
+          if (filterValue === "all") {
+            card.style.display = "block";
+          } else {
+            if (card.getAttribute("data-category") === filterValue) {
+              card.style.display = "block";
+            } else {
+              card.style.display = "none";
+            }
+          }
+        });
+      });
+    });
+
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileNav = document.getElementById("mobileNav");
+
+    if (mobileMenuBtn && mobileNav) {
+      mobileMenuBtn.addEventListener("click", function () {
+        mobileNav.classList.toggle("active");
+        document.body.classList.toggle("no-scroll");
+
+        this.classList.toggle("active");
+        if (mobileMenuBtn.classList.contains("active")) {
+          this.children[0].style.transform = "rotate(45deg) translate(5px, 5px)";
+          this.children[1].style.opacity = "0";
+          this.children[2].style.transform = "rotate(-45deg) translate(5px, -5px)";
+        } else {
+          this.children[0].style.transform = "none";
+          this.children[1].style.opacity = "1";
+          this.children[2].style.transform = "none";
+        }
+      });
     }
-  
-    // Add notification styles
-    const style = document.createElement("style")
-    style.textContent = `
-          .notification {
-              position: fixed;
-              bottom: 20px;
-              left: 20px;
-              background-color: var(--primary-color);
-              color: var(--text-color);
-              padding: 10px 20px;
-              border-radius: var(--border-radius);
-              box-shadow: var(--shadow);
-              transform: translateY(100px);
-              opacity: 0;
-              transition: all 0.3s ease;
-              z-index: 9999;
-          }
-          
-          .notification.show {
-              transform: translateY(0);
-              opacity: 1;
-          }
-          
-          .no-scroll {
-              overflow: hidden;
-          }
-      `
-    document.head.appendChild(style)
-  })
-  
+
+    const backToTopBtn = document.getElementById("backToTop");
+    if (backToTopBtn) {
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          backToTopBtn.classList.add("active");
+        } else {
+          backToTopBtn.classList.remove("active");
+        }
+      });
+
+      backToTopBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    }
+
+    const cartIcon = document.getElementById("cartIcon");
+    if (cartIcon) {
+      cartIcon.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "keranjang.html";
+      });
+    }
+  } catch (error) {
+    console.error("Error during DOMContentLoaded:", error);
+    showNotification("Terjadi kesalahan saat memuat halaman", "error");
+  }
+});
+
+window.products = products;
+window.cart = cart;
+window.saveToLocalStorage = saveToLocalStorage;
+window.loadFromLocalStorage = loadFromLocalStorage;
+window.formatPrice = formatPrice;
+window.showNotification = showNotification;
+window.updateCartCount = updateCartCount;
+window.getProductById = getProductById;
+window.parsePrice = parsePrice;
+window.addToCart = addToCart;
+window.logout = logout;
+window.updateUserUI = updateUserUI;
+window.setupUserDropdown = setupUserDropdown;

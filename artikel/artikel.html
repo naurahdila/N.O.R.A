@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel - N.O.R.A</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="artikel.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="../index.html">
+                        <h1>N.O.R.A</h1>
+                    </a>
+                </div>
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="../index.html">Beranda</a></li>
+                        <li><a href="../produk/produk.html">Koleksi</a></li>
+                        <li><a href="../index.html#tentang">Tentang Kami</a></li>
+                        <li><a href="artikel.html" class="active">Artikel</a></li>
+                        <li><a href="../index.html#kontak">Kontak</a></li>
+                    </ul>
+                </nav>
+                <div class="header-icons">
+                    <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
+                    <a href="../keranjang.html" class="icon-link" id="cartIcon"><i class="fas fa-shopping-bag"></i><span class="cart-count">0</span></a>
+                    <a href="#" class="icon-link"><i class="fas fa-user"></i></a>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="../index.html">Beranda</a></li>
+            <li><a href="../produk/produk.html">Koleksi</a></li>
+            <li><a href="../index.html#tentang">Tentang Kami</a></li>
+            <li><a href="artikel.html" class="active">Artikel</a></li>
+            <li><a href="../index.html#kontak">Kontak</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Articles Page -->
+    <section class="articles-page">
+        <div class="container">
+            <div class="articles-header">
+                <h1>Artikel & Tips</h1>
+                <p>Temukan berbagai artikel menarik seputar fashion muslim, tips merawat busana, dan informasi terkini dari N.O.R.A</p>
+            </div>
+            
+            <div class="articles-search">
+                <input type="text" placeholder="Cari artikel...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="articles-filter">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="fashion">Fashion Muslim</button>
+                <button class="filter-btn" data-filter="tips">Tips & Trik</button>
+                <button class="filter-btn" data-filter="trend">Tren Terkini</button>
+                <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
+            </div>
+            
+            <div class="featured-article">
+                <div class="featured-article-card">
+                    <div class="featured-article-image">
+                        <img src="https://i.pinimg.com/736x/48/04/1c/48041cd200381b20a4cddf3be784d837.jpg" alt="Tren Gamis 2023">
+                    </div>
+                    <div class="featured-article-content">
+                        <span class="featured-article-tag">Terbaru</span>
+                        <h2 class="featured-article-title"><a href="../detail_artikel/detail_artikel.html">Tren Gamis 2023: Koleksi Terbaru N.O.R.A yang Elegan dan Nyaman</a></h2>
+                        <p class="featured-article-excerpt">Di era modern ini, busana muslim khususnya gamis telah mengalami evolusi yang signifikan. Tidak lagi hanya sebagai pakaian untuk ibadah, gamis kini telah menjadi pilihan fashion yang stylish dan versatile bagi wanita muslimah.</p>
+                        <div class="featured-article-meta">
+                            <span><i class="far fa-calendar-alt"></i> 13 Mei 2023</span>
+                            <span><i class="far fa-folder"></i> Fashion Muslim</span>
+                            <span><i class="far fa-eye"></i> 1.245 Dilihat</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="articles-grid">
+                <div class="article-card" data-category="tips">
+                    <div class="article-card-image">
+                        <img src="https://i.pinimg.com/736x/aa/58/5a/aa585a7f2e26b4b0ed97cb2894d187fd.jpg" alt="Tips Merawat Hijab">
+                    </div>
+                    <div class="article-card-content">
+                        <h3 class="article-card-title"><a href="#">7 Tips Merawat Hijab agar Tetap Awet dan Tidak Cepat Kusut</a></h3>
+                        <p class="article-card-excerpt">Hijab adalah item fashion yang perlu perawatan khusus agar tetap awet dan tidak cepat kusut. Berikut adalah 7 tips merawat hijab...</p>
+                        <div class="article-card-meta">
+                            <span class="article-card-category">Tips & Trik</span>
+                            <span><i class="far fa-calendar-alt"></i> 5 Mei 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card" data-category="trend">
+                    <div class="article-card-image">
+                        <img src="https://i.pinimg.com/736x/59/f1/40/59f140fb34f3856b61fefa2a4fd2e3f4.jpg" alt="Tren Hijab 2023">
+                    </div>
+                    <div class="article-card-content">
+                        <h3 class="article-card-title"><a href="#">Tren Hijab 2023: Gaya Hijab yang Akan Populer Tahun Ini</a></h3>
+                        <p class="article-card-excerpt">Tahun 2023 membawa banyak tren baru dalam dunia fashion hijab. Dari gaya simpel hingga yang lebih statement, berikut adalah tren hijab...</p>
+                        <div class="article-card-meta">
+                            <span class="article-card-category">Tren Terkini</span>
+                            <span><i class="far fa-calendar-alt"></i> 20 April 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card" data-category="fashion">
+                    <div class="article-card-image">
+                        <img src="https://i.pinimg.com/736x/cf/aa/1c/cfaa1c62abd205aa3c5f45bb08c49ad1.jpg" alt="Panduan Ukuran Gamis">
+                    </div>
+                    <div class="article-card-content">
+                        <h3 class="article-card-title"><a href="#">Panduan Lengkap Memilih Ukuran Gamis yang Tepat</a></h3>
+                        <p class="article-card-excerpt">Memilih ukuran gamis yang tepat bisa menjadi tantangan tersendiri. Dalam artikel ini, kami akan memberikan panduan lengkap...</p>
+                        <div class="article-card-meta">
+                            <span class="article-card-category">Fashion Muslim</span>
+                            <span><i class="far fa-calendar-alt"></i> 10 April 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card" data-category="lifestyle">
+                    <div class="article-card-image">
+                        <img src="https://i.pinimg.com/736x/84/04/13/840413527c8e59d87aceda9820969f8c.jpg" alt="Modest Fashion">
+                    </div>
+                    <div class="article-card-content">
+                        <h3 class="article-card-title"><a href="#">Modest Fashion: Tampil Stylish dengan Tetap Syar'i</a></h3>
+                        <p class="article-card-excerpt">Modest fashion atau busana sopan kini menjadi tren global. Bagaimana cara tampil stylish dengan tetap memenuhi kaidah syar'i?</p>
+                        <div class="article-card-meta">
+                            <span class="article-card-category">Lifestyle</span>
+                            <span><i class="far fa-calendar-alt"></i> 1 April 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card" data-category="tips">
+                    <div class="article-card-image">
+                        <img src="https://i.pinimg.com/736x/98/8b/0f/988b0fcb9e8f79090501b3ccb46ed85a.jpg" alt="Merawat Gamis">
+                    </div>
+                    <div class="article-card-content">
+                        <h3 class="article-card-title"><a href="#">5 Cara Merawat Gamis agar Tetap Awet dan Tidak Luntur</a></h3>
+                        <p class="article-card-excerpt">Gamis adalah investasi fashion yang perlu dirawat dengan baik. Berikut adalah 5 cara merawat gamis agar tetap awet dan tidak luntur...</p>
+                        <div class="article-card-meta">
+                            <span class="article-card-category">Tips & Trik</span>
+                            <span><i class="far fa-calendar-alt"></i> 25 Maret 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card" data-category="fashion">
+                    <div class="article-card-image">
+                        <img src="https://i.pinimg.com/736x/92/92/d6/9292d60d231a8c41c01e0208137ecf2e.jpg" alt="Mix and Match">
+                    </div>
+                    <div class="article-card-content">
+                        <h3 class="article-card-title"><a href="#">Mix and Match: Paduan Gamis dan Hijab yang Stylish</a></h3>
+                        <p class="article-card-excerpt">Bingung memadukan gamis dengan hijab? Artikel ini akan memberikan panduan lengkap tentang cara mix and match gamis dan hijab untuk berbagai kesempatan.</p>
+                        <div class="article-card-meta">
+                            <span class="article-card-category">Fashion Muslim</span>
+                            <span><i class="far fa-calendar-alt"></i> 15 Maret 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <a href="#" class="pagination-item disabled"><i class="fas fa-chevron-left"></i></a>
+                <a href="#" class="pagination-item active">1</a>
+                <a href="#" class="pagination-item">2</a>
+                <a href="#" class="pagination-item">3</a>
+                <a href="#" class="pagination-item">4</a>
+                <a href="#" class="pagination-item"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <h2>N.O.R.A</h2>
+                    </div>
+                    <p class="footer-description">N.O.R.A adalah brand gamis dan hijab homemade yang menyediakan busana muslim berkualitas tinggi dengan harga terjangkau.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Kategori</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Gamis</a></li>
+                        <li><a href="#">Hijab</a></li>
+                        <li><a href="#">Set Gamis & Hijab</a></li>
+                        <li><a href="#">Produk Terbaru</a></li>
+                        <li><a href="#">Produk Terlaris</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Informasi</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Cara Pemesanan</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kontak Kami</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Jl. Sememi Jaya, Surabaya Barat</li>
+                        <li><i class="fas fa-phone"></i> +62 821 3952 1237</li>
+                        <li><i class="fas fa-envelope"></i> noracolections.com</li>
+                        <li><i class="fas fa-clock"></i> Senin - Sabtu: 08.00 - 17.00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2023 N.O.R.A. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="../script.js"></script>
+    <script src="artikel.html"></script>
+</body>
+</html>

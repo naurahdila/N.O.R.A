@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pembayaran - N.O.R.A</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="pembayaran.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="../index.html">
+            <h1>N.O.R.A</h1>
+          </a>
+        </div>
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="../index.html">Beranda</a></li>
+            <li><a href="../produk/produk.html">Koleksi</a></li>
+            <li><a href="../index.html#tentang">Tentang Kami</a></li>
+            <li><a href="../artikel/artikel.html">Artikel</a></li>
+            <li><a href="../index.html#kontak">Kontak</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
+          <a href="../keranjang/keranjang.html" class="icon-link">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+          <div class="user-dropdown">
+            <a href="#" class="icon-link user-toggle active" id="userToggle">
+              <i class="fas fa-user"></i>
+            </a>
+            <div class="dropdown-menu" id="userDropdown">
+              <a href="../riwayat/riwayat.html" class="dropdown-item">
+                <i class="fas fa-history"></i>
+                <span>Riwayat Pesanan</span>
+              </a>
+              <a href="admin.html" class="dropdown-item active">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard Admin</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Keluar</span>
+              </a>
+            </div>
+          </div>
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="../index.html">Beranda</a></li>
+      <li><a href="../produk/produk.html">Koleksi</a></li>
+      <li><a href="../index.html#tentang">Tentang Kami</a></li>
+      <li><a href="../artikel/artikel.html">Artikel</a></li>
+      <li><a href="../index.html#kontak">Kontak</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <div class="social-links">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <h1>Pembayaran</h1>
+    </div>
+  </div>
+
+  <!-- Checkout Progress -->
+  <div class="checkout-progress">
+    <div class="container">
+      <div class="progress-steps">
+        <div class="step completed">
+          <div class="step-number">1</div>
+          <div class="step-label">Keranjang</div>
+        </div>
+        <div class="step active">
+          <div class="step-number">2</div>
+          <div class="step-label">Pembayaran</div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-label">Konfirmasi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Section -->
+  <section class="checkout-section">
+    <div class="container">
+      <div class="checkout-container">
+        <!-- Left Column - Forms -->
+        <div class="checkout-forms">
+          <!-- Billing Information -->
+          <div class="form-section">
+            <h2><i class="fas fa-user"></i> Informasi Pembeli</h2>
+            <form id="billingForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">Nama Depan *</label>
+                  <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Nama Belakang *</label>
+                  <input type="text" id="lastName" name="lastName" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Nomor Telepon *</label>
+                <input type="tel" id="phone" name="phone" required>
+              </div>
+            </form>
+          </div>
+
+          <!-- Shipping Information -->
+          <div class="form-section">
+            <h2><i class="fas fa-truck"></i> Alamat Pengiriman</h2>
+            <form id="shippingForm">
+              <div class="form-group">
+                <label for="address">Alamat Lengkap *</label>
+                <textarea id="address" name="address" rows="3" required placeholder="Masukkan alamat lengkap Anda"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="city">Kota *</label>
+                  <input type="text" id="city" name="city" required>
+                </div>
+                <div class="form-group">
+                  <label for="province">Provinsi *</label>
+                  <select id="province" name="province" required>
+                    <option value="">Pilih Provinsi</option>
+                    <option value="jawa-timur">Jawa Timur</option>
+                    <option value="jawa-tengah">Jawa Tengah</option>
+                    <option value="jawa-barat">Jawa Barat</option>
+                    <option value="jakarta">DKI Jakarta</option>
+                    <option value="banten">Banten</option>
+                    <option value="yogyakarta">DI Yogyakarta</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="postalCode">Kode Pos *</label>
+                <input type="text" id="postalCode" name="postalCode" required>
+              </div>
+            </form>
+          </div>
+
+          <!-- Payment Method -->
+          <div class="form-section">
+            <h2><i class="fas fa-credit-card"></i> Metode Pembayaran</h2>
+            <div class="payment-methods">
+              <div class="payment-method">
+                <input type="radio" id="bank-transfer" name="payment" value="bank-transfer" checked>
+                <label for="bank-transfer" class="payment-label">
+                  <div class="payment-icon">
+                    <i class="fas fa-university"></i>
+                  </div>
+                  <div class="payment-info">
+                    <h3>Transfer Bank</h3>
+                    <p>BCA, BNI, BRI, Mandiri</p>
+                  </div>
+                </label>
+              </div>
+              
+              <div class="payment-method">
+                <input type="radio" id="e-wallet" name="payment" value="e-wallet">
+                <label for="e-wallet" class="payment-label">
+                  <div class="payment-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                  </div>
+                  <div class="payment-info">
+                    <h3>E-Wallet</h3>
+                    <p>GoPay, OVO, DANA, ShopeePay</p>
+                  </div>
+                </label>
+              </div>
+              
+              <div class="payment-method">
+                <input type="radio" id="cod" name="payment" value="cod">
+                <label for="cod" class="payment-label">
+                  <div class="payment-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                  </div>
+                  <div class="payment-info">
+                    <h3>Bayar di Tempat (COD)</h3>
+                    <p>Bayar saat barang diterima</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Notes -->
+          <div class="form-section">
+            <h2><i class="fas fa-sticky-note"></i> Catatan Pesanan</h2>
+            <div class="form-group">
+              <label for="orderNotes">Catatan untuk penjual (opsional)</label>
+              <textarea id="orderNotes" name="orderNotes" rows="3" placeholder="Tambahkan catatan khusus untuk pesanan Anda..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Order Summary -->
+        <div class="order-summary">
+          <h2>Ringkasan Pesanan</h2>
+          
+          <div class="order-items" id="orderItems">
+            <!-- Order items will be loaded here -->
+          </div>
+          
+          <div class="order-totals">
+            <div class="total-row">
+              <span class="total-label">Subtotal</span>
+              <span class="total-value" id="orderSubtotal">Rp 0</span>
+            </div>
+            <div class="total-row">
+              <span class="total-label">Pengiriman</span>
+              <span class="total-value" id="orderShipping">Rp 15.000</span>
+            </div>
+            <div class="total-row total-final">
+              <span class="total-label">Total</span>
+              <span class="total-value" id="orderTotal">Rp 0</span>
+            </div>
+          </div>
+          
+          <button class="btn-place-order" id="placeOrderBtn">
+            <i class="fas fa-lock"></i>
+            Buat Pesanan
+          </button>
+          
+          <div class="security-info">
+            <i class="fas fa-shield-alt"></i>
+            <span>Transaksi Anda aman dan terenkripsi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-chevron-up"></i>
+  </a>
+
+  <!-- Notification -->
+  <div class="notification" id="notification">
+    <div class="notification-content">
+      <i class="fas fa-check-circle"></i>
+      <span id="notificationMessage">Pesanan berhasil dibuat</span>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Memproses pesanan Anda...</p>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+  <script src="pembayaran.js"></script>
+  <script>
+    // User dropdown functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const userToggle = document.getElementById('userToggle');
+      const userDropdown = document.getElementById('userDropdown');
+
+      if (userToggle && userDropdown) {
+        userToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          userDropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!userToggle.contains(e.target) && !userDropdown.contains(e.target)) {
+            userDropdown.classList.remove('show');
+          }
+        });
+      }
+    });
+
+    function logout() {
+      // Clear any stored user data
+      localStorage.removeItem('adminLoggedIn');
+      showNotification('Berhasil keluar!', 'success');
+      setTimeout(() => {
+        window.location.href = '../index.html';
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Akun - N.O.R.A</title>
+    <meta name="description" content="Pilih jenis akun Anda untuk mengakses N.O.R.A Collections">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== BASE STYLES ===== */
+        :root {
+            --primary-color: #ffc0cb;
+            --primary-dark: #ffb6c1;
+            --primary-light: #ffecef;
+            --secondary-color: #add8e6;
+            --secondary-dark: #9ac0d1;
+            --text-color: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --black: #000000;
+            --gray: #f5f5f5;
+            --gray-light: #f9f9f9;
+            --gray-dark: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+            --border-radius-sm: 8px;
+            --border-radius-lg: 16px;
+            --spacing-xs: 5px;
+            --spacing-sm: 10px;
+            --spacing-md: 15px;
+            --spacing-lg: 20px;
+            --spacing-xl: 30px;
+            --spacing-xxl: 60px;
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Playfair Display', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--gray-light);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* ===== HEADER ===== */
+        .auth-header {
+            background: linear-gradient(135deg, var(--primary-light), var(--white));
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--spacing-md) 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            margin-bottom: 0;
+            color: var(--text-color);
+            font-family: var(--font-secondary);
+        }
+
+        .logo span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .back-link {
+            font-size: 1rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .back-link i {
+            font-size: 1.2rem;
+        }
+
+        /* ===== ACCOUNT SELECTION SECTION ===== */
+        .account-selection-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23ffecef" fill-opacity="0.3" d="M0,192L48,181.3C96,171,192,149,288,149.3C384,149,480,171,576,181.3C672,192,768,192,864,181.3C960,171,1056,149,1152,138.7C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .account-selection-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-xxl) 0;
+        }
+
+        .selection-container {
+            text-align: center;
+            background-color: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            max-width: 800px;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-header h2 {
+            font-family: var(--font-secondary);
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .account-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+            justify-content: center;
+        }
+
+        .account-card {
+            background: linear-gradient(135deg, var(--primary-light), var(--white));
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            width: 300px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .account-card.admin {
+            background: linear-gradient(135deg, var(--secondary-light), var(--white));
+        }
+
+        .account-card:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .account-card i {
+            font-size: 3rem;
+            color: var(--primary-dark);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .account-card.admin i {
+            color: var(--secondary-dark);
+        }
+
+        .account-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .account-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .account-card .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: var(--border-radius-sm);
+        }
+
+        .account-card.customer .btn {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .account-card.customer .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .account-card.admin .btn {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+
+        .account-card.admin .btn:hover {
+            background-color: var(--secondary-dark);
+        }
+
+        /* ===== NOTIFICATION ===== */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 15px 25px;
+            border-radius: var(--border-radius-sm);
+            box-shadow: var(--shadow-md);
+            transform: translateX(-100%);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .notification-content i {
+            font-size: 1.5rem;
+        }
+
+        .notification-content span {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 768px) {
+            .account-selection-section {
+                padding: var(--spacing-xl) 0;
+            }
+
+            .selection-container {
+                padding: var(--spacing-lg);
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .account-card {
+                width: 250px;
+            }
+
+            .account-card i {
+                font-size: 2.5rem;
+            }
+
+            .account-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .notification {
+                bottom: 20px;
+                left: 20px;
+                padding: 12px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .selection-container {
+                padding: var(--spacing-md);
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+            }
+
+            .account-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .account-card i {
+                font-size: 2rem;
+            }
+
+            .account-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .account-card p {
+                font-size: 0.85rem;
+            }
+
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+
+            .logo span {
+                font-size: 0.8rem;
+            }
+
+            .back-link {
+                font-size: 0.9rem;
+            }
+
+            .notification {
+                bottom: 15px;
+                left: 15px;
+                padding: 10px 15px;
+            }
+
+            .notification-content i {
+                font-size: 1.2rem;
+            }
+
+            .notification-content span {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body class="account-selection-page">
+    <!-- Header -->
+    <header class="auth-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>N.O.R.A</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Account Selection Section -->
+    <section class="account-selection-section">
+        <div class="container">
+            <div class="selection-container">
+                <div class="section-header">
+                    <h2>Pilih Jenis Akun</h2>
+                </div>
+                <div class="account-options">
+                    <div class="account-card customer" onclick="selectAccount('customer')">
+                        <i class="fas fa-user"></i>
+                        <h3>Customer</h3>
+                        <p>Belanja gamis & hijab homemade dengan mudah dan nyaman</p>
+                        <button class="btn btn-primary">Pilih Customer</button>
+                    </div>
+                    <div class="account-card admin" onclick="selectAccount('admin')">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h3>Admin</h3>
+                        <p>Kelola produk, pesanan, dan data pelanggan dengan cepat</p>
+                        <button class="btn btn-secondary">Pilih Admin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notification -->
+    <div class="notification" id="notification" style="display: none">
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="notificationMessage">Berhasil!</span>
+        </div>
+    </div>
+
+    <script>
+        function selectAccount(accountType) {
+            const card = event.currentTarget;
+            const button = card.querySelector('.btn');
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+            button.disabled = true;
+            card.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                localStorage.setItem('userType', accountType);
+                if (accountType === 'admin') {
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    localStorage.removeItem('customerLoggedIn');
+                    showNotification('Berhasil masuk sebagai Admin!', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'admin.html';
+                    }, 1500);
+                } else if (accountType === 'customer') {
+                    localStorage.setItem('customerLoggedIn', 'true');
+                    localStorage.removeItem('adminLoggedIn');
+                    showNotification('Berhasil masuk sebagai Customer!', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                }
+            }, 1000);
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            if (notification && notificationMessage) {
+                notificationMessage.textContent = message;
+                notification.style.display = 'block';
+                notification.style.backgroundColor = type === 'error' ? '#f44336' : '#ffb6c1';
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        notification.style.display = 'none';
+                    }, 400);
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>

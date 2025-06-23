@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran - N.O.R.A</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .payment-page {
+            padding: 60px 0;
+        }
+
+        .payment-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .payment-form {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .payment-details,
+        .payment-summary {
+            flex: 1;
+            background-color: var(--gray-light);
+            padding: 30px;
+            border-radius: var(--border-radius);
+        }
+
+        .payment-summary {
+            max-width: 400px;
+        }
+
+        .payment-summary-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .summary-item.total {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--gray-dark);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .payment-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>N.O.R.A</h1>
+                <nav>
+                    <a href="../index.html">Beranda</a>
+                    <a href="keranjang.html">Keranjang</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Payment Page -->
+    <section class="payment-page">
+        <div class="container">
+            <div class="payment-header">
+                <h1>Pembayaran</h1>
+            </div>
+            <div class="payment-form">
+                <!-- Payment Details -->
+                <div class="payment-details">
+                    <h2>Detail Pengiriman</h2>
+                    <form id="paymentForm">
+                        <div class="form-group">
+                            <label for="name">Nama Penerima:</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Alamat Pengiriman:</label>
+                            <textarea id="address" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Nomor Telepon:</label>
+                            <input type="text" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="paymentMethod">Metode Pembayaran:</label>
+                            <select id="paymentMethod" required>
+                                <option value="">Pilih Metode</option>
+                                <option value="transfer">Transfer Bank</option>
+                                <option value="cod">COD (Bayar di Tempat)</option>
+                                <option value="ewallet">E-Wallet</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-submit">Lanjutkan Pembayaran</button>
+                    </form>
+                </div>
+
+                <!-- Payment Summary -->
+                <div class="payment-summary">
+                    <h2 class="payment-summary-title">Ringkasan Belanja</h2>
+                    <div id="summaryItems"></div>
+                    <div class="summary-item">
+                        <span>Subtotal</span>
+                        <span id="summarySubtotal">Rp 0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Pengiriman</span>
+                        <span id="summaryShipping">Rp 15.000</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total</span>
+                        <span id="summaryTotal">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const summaryItems = document.getElementById("summaryItems");
+            const summarySubtotal = document.getElementById("summarySubtotal");
+            const summaryTotal = document.getElementById("summaryTotal");
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let shippingCost = 15000;
+            let subtotal = 0;
+
+            // Populate cart summary
+            cart.forEach(item => {
+                const price = parseInt(item.price.replace(/[^\d]/g, ""));
+                const itemTotal = price * item.quantity;
+                subtotal += itemTotal;
+
+                const div = document.createElement("div");
+                div.className = "summary-item";
+                div.innerHTML = `
+                    <span>${item.name} (${item.quantity}x)</span>
+                    <span>Rp ${formatNumber(itemTotal)}</span>
+                `;
+                summaryItems.appendChild(div);
+            });
+
+            // Update totals
+            summarySubtotal.textContent = `Rp ${formatNumber(subtotal)}`;
+            summaryTotal.textContent = `Rp ${formatNumber(subtotal + shippingCost)}`;
+
+            // Format number with thousand separator
+            function formatNumber(number) {
+                return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+
+            // Handle form submission
+            document.getElementById("paymentForm").addEventListener("submit", function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById("name").value;
+                const address = document.getElementById("address").value;
+                const phone = document.getElementById("phone").value;
+                const paymentMethod = document.getElementById("paymentMethod").value;
+
+                // Validasi
+                if (!name || !address || !phone || !paymentMethod) {
+                    alert("Harap lengkapi semua data.");
+                    return;
+                }
+
+                // Simpan data pembayaran
+                const paymentData = {
+                    name,
+                    address,
+                    phone,
+                    paymentMethod,
+                    subtotal,
+                    shippingCost,
+                    total: subtotal + shippingCost,
+                    cart
+                };
+
+                localStorage.setItem("paymentData", JSON.stringify(paymentData));
+
+                alert("Pembayaran berhasil. Terima kasih!");
+                window.location.href = "../index.html";
+            });
+        });
+    </script>
+</body>
+</html>

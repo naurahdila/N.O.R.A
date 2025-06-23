@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riwayat Pesanan - N.O.R.A</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="riwayat.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="../index.html">
+            <h1>N.O.R.A</h1>
+          </a>
+        </div>
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="../index.html">Beranda</a></li>
+            <li><a href="../produk/produk.html">Koleksi</a></li>
+            <li><a href="../index.html#tentang">Tentang Kami</a></li>
+            <li><a href="../artikel/artikel.html">Artikel</a></li>
+            <li><a href="../index.html#kontak">Kontak</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
+          <a href="../keranjang.html" class="icon-link">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+          <a href="#" class="icon-link active"><i class="fas fa-user"></i></a>
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="../index.html">Beranda</a></li>
+      <li><a href="../produk/produk.html">Koleksi</a></li>
+      <li><a href="../index.html#tentang">Tentang Kami</a></li>
+      <li><a href="../artikel/artikel.html">Artikel</a></li>
+      <li><a href="../index.html#kontak">Kontak</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <div class="social-links">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <h1>Riwayat Pesanan</h1>
+    </div>
+  </div>
+
+  <!-- Order History Section -->
+  <section class="order-history-section">
+    <div class="container">
+      <div class="order-history-container">
+        <!-- Filter and Search -->
+        <div class="order-filters">
+          <div class="search-box">
+            <input type="text" id="orderSearch" placeholder="Cari pesanan...">
+            <button id="searchBtn"><i class="fas fa-search"></i></button>
+          </div>
+          <div class="filter-options">
+            <select id="statusFilter">
+              <option value="all">Semua Status</option>
+              <option value="pending">Menunggu Pembayaran</option>
+              <option value="processing">Diproses</option>
+              <option value="completed">Selesai</option>
+              <option value="cancelled">Dibatalkan</option>
+            </select>
+            <select id="dateFilter">
+              <option value="all">Semua Waktu</option>
+              <option value="today">Hari Ini</option>
+              <option value="week">Minggu Ini</option>
+              <option value="month">Bulan Ini</option>
+              <option value="year">Tahun Ini</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Orders List -->
+        <div class="orders-list" id="ordersList">
+          <!-- Orders will be loaded here -->
+          <div class="empty-orders-message" id="emptyOrdersMessage" style="display: none;">
+            <i class="fas fa-shopping-bag"></i>
+            <h3>Belum Ada Pesanan</h3>
+            <p>Anda belum memiliki riwayat pesanan</p>
+            <a href="../produk/produk.html" class="btn-shop-now">Belanja Sekarang</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Detail Modal -->
+  <div class="modal" id="orderDetailModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Detail Pesanan</h2>
+        <button class="close-modal"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body" id="orderDetailContent">
+        <!-- Order details will be loaded here -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn-close-modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-chevron-up"></i>
+  </a>
+
+  <!-- Notification -->
+  <div class="notification" id="notification">
+    <div class="notification-content">
+      <i class="fas fa-check-circle"></i>
+      <span id="notificationMessage">Pesanan berhasil dibuat</span>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+  <script src="riwayat.js"></script>
+</body>
+</html>
