@@ -201,7 +201,7 @@ function proceedToCheckout() {
   }
 
   // Redirect ke halaman pembayaran
-  window.location.href = "pembayaran.html"
+  window.location.href = "pembayaran/pembayaran.html"
 }
 
 // Fungsi untuk update jumlah item di keranjang
