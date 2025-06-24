@@ -357,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const numericPrice = parsePrice(productPrice);
           addToCart(productId, productName, numericPrice, productImage);
         } else if (icon.classList.contains("fa-eye")) {
-          window.location.href = `detail_produk/detail_produk.html?id=${productId}`;
+          window.location.href = `produk/detail_produk.html?id=${productId}`;
         }
       });
     });
@@ -367,7 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
       card.addEventListener("click", function (e) {
         if (!e.target.classList.contains("action-btn") && !e.target.closest(".action-btn")) {
           const productId = this.getAttribute("data-id");
-          window.location.href = `detail_produk/detail_produk.html?id=${productId}`;
+          window.location.href = `produk/detail_produk.html?id=${productId}`;
         }
       });
     });

@@ -1,325 +1,509 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Koleksi Produk - N.O.R.A</title>
+    <title>N.O.R.A - Gamis & Hijab Homemade</title>
     <link rel="stylesheet" href="../styles.css" />
-    <link rel="stylesheet" href="produk.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-</head>
-<body>
-    <!-- Header -->
-    <header>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    
+  </head>
+  <body>
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+      <!-- Header -->
+      <header>
         <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <a href="../index.html">
-                        <h1>N.O.R.A</h1>
-                    </a>
-                </div>
-                <nav class="desktop-nav">
-                    <ul>
-                        <li><a href="../index.html">Beranda</a></li>
-                        <li><a href="produk.html" class="active">Koleksi</a></li>
-                        <li><a href="../index.html#tentang">Tentang Kami</a></li>
-                        <li><a href="../artikel/artikel.html">Artikel</a></li>
-                        <li><a href="../index.html#kontak">Kontak</a></li>
-                    </ul>
-                </nav>
-                <div class="header-icons">
-                    <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
-                    <a href="../keranjang.html" class="icon-link">
-                        <i class="fas fa-shopping-bag"></i>
-                        <span class="cart-count" id="cartCount">0</span>
-                    </a>
-                    <div class="user-dropdown">
-                        <a href="#" class="icon-link user-toggle" id="userToggle">
-                            <i class="fas fa-user"></i>
-                        </a>
-                        <div class="dropdown-menu" id="userDropdown">
-                            <a href="../riwayat/riwayat.html" class="dropdown-item">
-                                <i class="fas fa-history"></i>
-                                <span>Riwayat Pesanan</span>
-                            </a>
-                            <a href="../admin/admin.html" class="dropdown-item">
-                                <i class="fas fa-tachometer-alt"></i>
-                                <span>Dashboard Admin</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item" onclick="logout()">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <span>Keluar</span>
-                            </a>
-                        </div>
-                    </div>
-                    <button class="mobile-menu-btn" id="mobileMenuBtn">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
+          <div class="header-content">
+            <div class="logo">
+              <a href="../index.html">
+                <h1>N.O.R.A</h1>
+              </a>
             </div>
+            <nav class="desktop-nav">
+              <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="produk/produk.html">Koleksi</a></li>
+                <li><a href="index.html#tentang">Tentang Kami</a></li>
+                <li><a href="artikel/artikel.html">Artikel</a></li>
+                <li><a href="index.html#kontak">Kontak</a></li>
+              </ul>
+            </nav>
+            <div class="header-icons">
+              <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
+              <a href="keranjang.html" class="icon-link" id="cartIcon">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="cartCount">0</span>
+              </a>
+              <div class="user-dropdown">
+                <a href="#" class="icon-link user-toggle" id="userToggle">
+                  <i class="fas fa-user"></i>
+                </a>
+                </div>
+              </div>
+              <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
         </div>
-    </header>
+      </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
+      <!-- Mobile Navigation -->
+      <div class="mobile-nav" id="mobileNav">
         <ul>
-            <li><a href="../index.html">Beranda</a></li>
-            <li><a href="produk.html" class="active">Koleksi</a></li>
-            <li><a href="../index.html#tentang">Tentang Kami</a></li>
-            <li><a href="../artikel/artikel.html">Artikel</a></li>
-            <li><a href="../index.html#kontak">Kontak</a></li>
+          <li><a href="../index.html" class="active">Beranda</a></li>
+          <li><a href="produk.html">Koleksi</a></li>
+          <li><a href="../index.html#tentang">Tentang Kami</a></li>
+          <li><a href="../artikel/artikel.html">Artikel</a></li>
+          <li><a href="../index.html#kontak">Kontak</a></li>
         </ul>
         <div class="mobile-nav-footer">
-            <div class="social-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
+          <div class="social-links">
+            <a href="https://instagram.com/noracollections"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/noracollections"><i class="fab fa-facebook"></i></a>
+            <a href="https://tiktok.com/@noracollections"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/+6282139521237"><i class="fab fa-whatsapp"></i></a>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Featured Products -->
-    <section class="featured-products" id="koleksi">
+      <!-- Featured Products -->
+      <section class="featured-products" id="koleksi">
         <div class="container">
-            <div class="section-header">
-                <h2>Koleksi Terbaru</h2>
-                <p>Temukan koleksi terbaru kami yang dirancang khusus untuk wanita modern</p>
-            </div>
-            <div class="product-filter">
-                <button class="filter-btn active" data-filter="all">Semua</button>
-                <button class="filter-btn" data-filter="Gamis">Gamis</button>
-                <button class="filter-btn" data-filter="Hijab">Hijab</button>
-                <button class="filter-btn" data-filter="Set">Set Gamis & Hijab</button>
-            </div>
-            
-            <div class="products-grid" id="productsGrid">
-                <!-- Product 1 - Gamis Zahra -->
-                <div class="product-card" data-category="Gamis" data-id="1">
-                    <div class="product-image">
-                        <img src="https://i.pinimg.com/736x/48/04/1c/48041cd200381b20a4cddf3be784d837.jpg" alt="Gamis Zahra">
-                        <div class="product-tag">Baru</div>
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn" title="Tambah ke Wishlist"><i class="far fa-heart"></i></button>
-                            <button class="action-btn cart-btn" title="Tambah ke Keranjang"><i class="fas fa-shopping-bag"></i></button>
-                            <button class="action-btn view-btn" title="Lihat Detail"><i class="fas fa-eye"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>Gamis Zahra</h3>
-                        <div class="product-price">
-                            <span class="current-price">Rp 213.000</span>
-                        </div>
-                        <div class="product-colors">
-                            <span class="color-dot" style="background-color: #ffd1dc;"></span>
-                            <span class="color-dot" style="background-color: #f5f5f5;"></span>
-                            <span class="color-dot" style="background-color: #333333;"></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 2 - Hijab Pashmina -->
-                <div class="product-card" data-category="Hijab" data-id="2">
-                    <div class="product-image">
-                        <img src="https://i.pinimg.com/736x/aa/58/5a/aa585a7f2e26b4b0ed97cb2894d187fd.jpg" alt="Hijab Pashmina">
-                        <div class="product-tag">Terlaris</div>
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn" title="Tambah ke Wishlist"><i class="far fa-heart"></i></button>
-                            <button class="action-btn cart-btn" title="Tambah ke Keranjang"><i class="fas fa-shopping-bag"></i></button>
-                            <button class="action-btn view-btn" title="Lihat Detail"><i class="fas fa-eye"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>Hijab Pashmina</h3>
-                        <div class="product-price">
-                            <span class="current-price">Rp 50.000</span>
-                        </div>
-                        <div class="product-colors">
-                            <span class="color-dot" style="background-color: #ffd1dc;"></span>
-                            <span class="color-dot" style="background-color: #f5f5f5;"></span>
-                            <span class="color-dot" style="background-color: #333333;"></span>
-                            <span class="color-dot" style="background-color: #e0e0e0;"></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 3 - Set Gamis & Hijab Aisha -->
-                <div class="product-card" data-category="Set" data-id="3">
-                    <div class="product-image">
-                        <img src="https://i.pinimg.com/736x/2f/e2/1e/2fe21e2ac4cc68a970358d57d7a7b60f.jpg" alt="Set Gamis & Hijab">
-                        <div class="product-tag">Hemat</div>
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn" title="Tambah ke Wishlist"><i class="far fa-heart"></i></button>
-                            <button class="action-btn cart-btn" title="Tambah ke Keranjang"><i class="fas fa-shopping-bag"></i></button>
-                            <button class="action-btn view-btn" title="Lihat Detail"><i class="fas fa-eye"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>Set Gamis & Hijab Aisha</h3>
-                        <div class="product-price">
-                            <span class="original-price">Rp 350.000</span>
-                            <span class="current-price">Rp 320.000</span>
-                        </div>
-                        <div class="product-colors">
-                            <span class="color-dot" style="background-color: #ffd1dc;"></span>
-                            <span class="color-dot" style="background-color: #f5f5f5;"></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 4 - Gamis Syari Fatimah -->
-                <div class="product-card" data-category="Gamis" data-id="4">
-                    <div class="product-image">
-                        <img src="https://i.pinimg.com/736x/c3/78/be/c378be2b22b36e94a8b484d924d5a769.jpg" alt="Gamis Fatimah">
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn" title="Tambah ke Wishlist"><i class="far fa-heart"></i></button>
-                            <button class="action-btn cart-btn" title="Tambah ke Keranjang"><i class="fas fa-shopping-bag"></i></button>
-                            <button class="action-btn view-btn" title="Lihat Detail"><i class="fas fa-eye"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>Gamis Syari Fatimah</h3>
-                        <div class="product-price">
-                            <span class="current-price">Rp 275.000</span>
-                        </div>
-                        <div class="product-colors">
-                            <span class="color-dot" style="background-color: #ffd1dc;"></span>
-                            <span class="color-dot" style="background-color: #f5f5f5;"></span>
-                            <span class="color-dot" style="background-color: #333333;"></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 5 - Hijab Segi Empat Silk -->
-                <div class="product-card" data-category="Hijab" data-id="5">
-                    <div class="product-image">
-                        <img src="https://i.pinimg.com/736x/59/f1/40/59f140fb34f3856b61fefa2a4fd2e3f4.jpg" alt="Hijab Segi Empat Silk">
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn" title="Tambah ke Wishlist"><i class="far fa-heart"></i></button>
-                            <button class="action-btn cart-btn" title="Tambah ke Keranjang"><i class="fas fa-shopping-bag"></i></button>
-                            <button class="action-btn view-btn" title="Lihat Detail"><i class="fas fa-eye"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>Hijab Segi Empat Silk</h3>
-                        <div class="product-price">
-                            <span class="current-price">Rp 75.000</span>
-                        </div>
-                        <div class="product-colors">
-                            <span class="color-dot" style="background-color: #ffd1dc;"></span>
-                            <span class="color-dot" style="background-color: #f5f5f5;"></span>
-                            <span class="color-dot" style="background-color: #333333;"></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 6 - Gamis Casual Mariam -->
-                <div class="product-card" data-category="Gamis" data-id="6">
-                    <div class="product-image">
-                        <img src="https://i.pinimg.com/736x/cc/77/8a/cc778ae30ab31e24fe2a8602423bb542.jpg" alt="Gamis Casual Mariam">
-                        <div class="product-tag">Baru</div>
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn" title="Tambah ke Wishlist"><i class="far fa-heart"></i></button>
-                            <button class="action-btn cart-btn" title="Tambah ke Keranjang"><i class="fas fa-shopping-bag"></i></button>
-                            <button class="action-btn view-btn" title="Lihat Detail"><i class="fas fa-eye"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>Gamis Casual Mariam</h3>
-                        <div class="product-price">
-                            <span class="current-price">Rp 185.000</span>
-                        </div>
-                        <div class="product-colors">
-                            <span class="color-dot" style="background-color: #ffd1dc;"></span>
-                            <span class="color-dot" style="background-color: #f5f5f5;"></span>
-                            <span class="color-dot" style="background-color: #e0e0e0;"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+          <div class="section-header">
+            <h2>Koleksi Terbaru</h2>
+            <p>
+              Temukan koleksi terbaru kami yang dirancang khusus untuk wanita
+              modern
+            </p>
+          </div>
+          <div class="product-filter">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="Gamis">Gamis</button>
+            <button class="filter-btn" data-filter="Hijab">Hijab</button>
+            <button class="filter-btn" data-filter="Set">
+              Set Gamis & Hijab
+            </button>
+          </div>
 
-    <!-- Footer -->
-    <footer>
+          <div class="products-grid" id="productsGrid">
+            <!-- Product 1 - Gamis Zahra -->
+            <div class="product-card" data-category="Gamis" data-id="1">
+              <div class="product-image">
+                <img
+                  src="https://i.pinimg.com/736x/48/04/1c/48041cd200381b20a4cddf3be784d837.jpg"
+                  alt="Gamis Zahra"
+                />
+                <div class="product-tag">Baru</div>
+                <div class="product-actions">
+                  <button
+                    class="action-btn wishlist-btn"
+                    title="Tambah ke Wishlist"
+                  >
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button class="action-btn cart-btn" title="Tambah ke Keranjang">
+                    <i class="fas fa-shopping-bag"></i>
+                  </button>
+                  <button class="action-btn view-btn" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Gamis Zahra</h3>
+                <div class="product-price">
+                  <span class="current-price">Rp 213.000</span>
+                </div>
+                <div class="product-colors">
+                  <span
+                    class="color-dot"
+                    style="background-color: #ffd1dc"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background-color: #f5f5f5"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background-color: #333333"
+                  ></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 2 - Hijab Pashmina -->
+            <div class="product-card" data-category="Hijab" data-id="2">
+              <div class="product-image">
+                <img
+                  src="https://i.pinimg.com/736x/aa/58/5a/aa585a7f2e26b4b0ed97cb2894d187fd.jpg"
+                  alt="Hijab Pashmina"
+                />
+                <div class="product-tag">Terlaris</div>
+                <div class="product-actions">
+                  <button
+                    class="action-btn wishlist-btn"
+                    title="Tambah ke Wishlist"
+                  >
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button class="action-btn cart-btn" title="Tambah ke Keranjang">
+                    <i class="fas fa-shopping-bag"></i>
+                  </button>
+                  <button class="action-btn view-btn" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Hijab Pashmina</h3>
+                <div class="product-price">
+                  <span class="current-price">Rp 50.000</span>
+                </div>
+                <div class="product-colors">
+                  <span
+                    class="color-dot"
+                    style="background-color: #ffd1dc"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background-color: #f5f5f5"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background-color: #333333"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background-color: #e0e0e0"
+                  ></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 3 - Set Gamis & Hijab Aisha -->
+            <div class="product-card" data-category="Set" data-id="3">
+              <div class="product-image">
+                <img
+                  src="https://i.pinimg.com/736x/2f/e2/1e/2fe21e2ac4cc68a970358d57d7a7b60f.jpg"
+                  alt="Set Gamis & Hijab"
+                />
+                <div class="product-tag">Hemat</div>
+                <div class="product-actions">
+                  <button
+                    class="action-btn wishlist-btn"
+                    title="Tambah ke Wishlist"
+                  >
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button class="action-btn cart-btn" title="Tambah ke Keranjang">
+                    <i class="fas fa-shopping-bag"></i>
+                  </button>
+                  <button class="action-btn view-btn" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Set Gamis & Hijab Aisha</h3>
+                <div class="product-price">
+                  <span class="original-price">Rp 350.000</span>
+                  <span class="current-price">Rp 320.000</span>
+                </div>
+                <div class="product-colors">
+                  <span
+                    class="color-dot"
+                    style="background-color: #ffd1dc"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background-color: #f5f5f5"
+                  ></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 4 - Gamis Syari Fatimah -->
+            <div class="product-card" data-category="Gamis" data-id="4">
+              <div class="product-image">
+                <img
+                  src="https://i.pinimg.com/736x/c3/78/be/c378be2b22b36e94a8b484d924d5a769.jpg"
+                  alt="Gamis Fatimah"
+                />
+                <div class="product-actions">
+                  <button
+                    class="action-btn wishlist-btn"
+                    title="Tambah ke Wishlist"
+                  >
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button class="action-btn cart-btn" title="Tambah ke Keranjang">
+                    <i class="fas fa-shopping-bag"></i>
+                  </button>
+                  <button class="action-btn view-btn" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Gamis Syari Fatimah</h3>
+                <div class="product-price">
+                  <span class="current-price">Rp 275.000</span>
+                </div>
+                <div class="product-colors">
+                  <span
+                    class="color-dot"
+                    style="background-color: #ffd1dc"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background-color: #f5f5f5"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background-color: #333333"
+                  ></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 5 - Hijab Segi Empat Silk -->
+            <div class="product-card" data-category="Hijab" data-id="5">
+              <div class="product-image">
+                <img
+                  src="https://i.pinimg.com/736x/59/f1/40/59f140fb34f3856b61fefa2a4fd2e3f4.jpg"
+                  alt="Hijab Segi Empat Silk"
+                />
+                <div class="product-actions">
+                  <button
+                    class="action-btn wishlist-btn"
+                    title="Tambah ke Wishlist"
+                  >
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button class="action-btn cart-btn" title="Tambah ke Keranjang">
+                    <i class="fas fa-shopping-bag"></i>
+                  </button>
+                  <button class="action-btn view-btn" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Hijab Segi Empat Silk</h3>
+                <div class="product-price">
+                  <span class="current-price">Rp 75.000</span>
+                </div>
+                <div class="product-colors">
+                  <span
+                    class="color-dot"
+                    style="background-color: #ffd1dc"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background-color: #f5f5f5"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background-color: #333333"
+                  ></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 6 - Gamis Casual Mariam -->
+            <div class="product-card" data-category="Gamis" data-id="6">
+              <div class="product-image">
+                <img
+                  src="https://i.pinimg.com/736x/cc/77/8a/cc778ae30ab31e24fe2a8602423bb542.jpg"
+                  alt="Gamis Casual Mariam"
+                />
+                <div class="product-tag">Baru</div>
+                <div class="product-actions">
+                  <button
+                    class="action-btn wishlist-btn"
+                    title="Tambah ke Wishlist"
+                  >
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button class="action-btn cart-btn" title="Tambah ke Keranjang">
+                    <i class="fas fa-shopping-bag"></i>
+                  </button>
+                  <button class="action-btn view-btn" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Gamis Casual Mariam</h3>
+                <div class="product-price">
+                  <span class="current-price">Rp 185.000</span>
+                </div>
+                <div class="product-colors">
+                  <span
+                    class="color-dot"
+                    style="background-color: #ffd1dc"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background-color: #f5f5f5"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background-color: #e0e0e0"
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categories -->
+      <section class="categories">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <div class="footer-logo">
-                        <h2>N.O.R.A</h2>
-                    </div>
-                    <p class="footer-description">
-                        N.O.R.A adalah brand gamis dan hijab homemade yang menyediakan
-                        busana muslim berkualitas tinggi dengan harga terjangkau.
-                    </p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Kategori</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Gamis</a></li>
-                        <li><a href="#">Hijab</a></li>
-                        <li><a href="#">Set Gamis & Hijab</a></li>
-                        <li><a href="#">Produk Terbaru</a></li>
-                        <li><a href="#">Produk Terlaris</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Informasi</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Cara Pemesanan</a></li>
-                        <li><a href="#">Kebijakan Privasi</a></li>
-                        <li><a href="#">Syarat & Ketentuan</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Kontak Kami</h3>
-                    <ul class="contact-info">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i> Jl. Sememi Jaya, Surabaya
-                            Barat
-                        </li>
-                        <li><i class="fas fa-phone"></i> +62 821 3952 1237</li>
-                        <li><i class="fas fa-envelope"></i> noracolections.com</li>
-                        <li><i class="fas fa-clock"></i> Senin - Sabtu: 08.00 - 17.00</li>
-                    </ul>
-                </div>
+          <div class="section-header">
+            <h2>Kategori Produk</h2>
+            <p>Temukan kategori produk yang sesuai dengan kebutuhan Anda</p>
+          </div>
+          <div class="categories-grid">
+            <div class="category-card">
+              <div class="category-image">
+                <img
+                  src="https://i.pinimg.com/736x/cf/aa/1c/cfaa1c62abd205aa3c5f45bb08c49ad1.jpg"
+                  alt="Gamis"
+                />
+              </div>
+              <div class="category-info">
+                <h3>Gamis</h3>
+                <p>20 Produk</p>
+                <a href="produk/produk.html" class="btn btn-small"
+                  >Lihat Koleksi</a
+                >
+              </div>
             </div>
-            <div class="footer-bottom">
-                <div class="copyright">
-                    <p>&copy; 2023 N.O.R.A. All Rights Reserved.</p>
-                </div>
+            <div class="category-card">
+              <div class="category-image">
+                <img
+                  src="https://i.pinimg.com/736x/fc/51/8a/fc518a21ca65856e43986ea0ca58a7e9.jpg"
+                  alt="Hijab"
+                />
+              </div>
+              <div class="category-info">
+                <h3>Hijab</h3>
+                <p>15 Produk</p>
+                <a href="produk/produk.html" class="btn btn-small"
+                  >Lihat Koleksi</a
+                >
+              </div>
             </div>
+            <div class="category-card">
+              <div class="category-image">
+                <img
+                  src="https://i.pinimg.com/736x/84/04/13/840413527c8e59d87aceda9820969f8c.jpg"
+                  alt="Set Gamis & Hijab"
+                />
+              </div>
+              <div class="category-info">
+                <h3>Set Gamis & Hijab</h3>
+                <p>10 Produk</p>
+                <a href="produk/produk.html" class="btn btn-small"
+                  >Lihat Koleksi</a
+                >
+              </div>
+            </div>
+          </div>
         </div>
-    </footer>
+      </section>
 
-    <!-- Back to Top Button -->
-    <a href="#" class="back-to-top" id="backToTop">
+      <!-- Footer -->
+      <footer id="kontak">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-column">
+              <div class="footer-logo">
+                <h2>N.O.R.A</h2>
+              </div>
+              <p class="footer-description">
+                N.O.R.A adalah brand gamis dan hijab homemade yang menyediakan
+                busana muslim berkualitas tinggi dengan harga terjangkau.
+              </p>
+              <div class="social-links">
+                <a href="https://instagram.com/noracollections"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com/noracollections"><i class="fab fa-facebook"></i></a>
+                <a href="https://tiktok.com/@noracollections"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/+6282139521237"><i class="fab fa-whatsapp"></i></a>
+              </div>
+            </div>
+            <div class="footer-column">
+              <h3>Kategori</h3>
+              <ul class="footer-links">
+                <li><a href="produk/produk.html">Gamis</a></li>
+                <li><a href="produk/produk.html">Hijab</a></li>
+                <li><a href="produk/produk.html">Set Gamis & Hijab</a></li>
+                <li><a href="produk/produk.html">Produk Terbaru</a></li>
+                <li><a href="produk/produk.html">Produk Terlaris</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h3>Informasi</h3>
+              <ul class="footer-links">
+                <li><a href="#tentang">Tentang Kami</a></li>
+                <li><a href="#">Cara Pemesanan</a></li>
+                <li><a href="#">Kebijakan Privasi</a></li>
+                <li><a href="#">Syarat & Ketentuan</a></li>
+                <li><a href="#">FAQ</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h3>Kontak Kami</h3>
+              <ul class="contact-info">
+                <li>
+                  <i class="fas fa-map-marker-alt"></i> Jl. Sememi Jaya, Surabaya
+                  Barat
+                </li>
+                <li><i class="fas fa-phone"></i> +62 821 3952 1237</li>
+                <li><i class="fas fa-envelope"></i> noracollections@gmail.com</li>
+                <li><i class="fas fa-clock"></i> Senin - Sabtu: 08.00 - 17.00</li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <div class="copyright">
+              <p>© 2024 N.O.R.A. All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Back to Top Button -->
+      <a href="#" class="back-to-top" id="backToTop">
         <i class="fas fa-chevron-up"></i>
-    </a>
+      </a>
 
-    <!-- Notification -->
-    <div class="notification" id="notification">
+      <!-- Notification -->
+      <div class="notification" id="notification" style="display: none">
         <div class="notification-content">
-            <i class="fas fa-check-circle"></i>
-            <span id="notificationMessage">Produk berhasil ditambahkan ke keranjang</span>
+          <i class="fas fa-check-circle"></i>
+          <span id="notificationMessage"
+            >Produk berhasil ditambahkan ke keranjang</span
+          >
         </div>
+      </div>
     </div>
 
-    <script src="../script.js"></script>
     <script src="produk.js"></script>
-</body>
+  </body>
 </html>
